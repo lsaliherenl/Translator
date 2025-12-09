@@ -189,7 +189,7 @@ Azure Translator API ile aşağıdaki dillere çeviri yapılabilir:
 
 ## 📝 Lisans
 
-Bu proje [MIT License](LICENSE) altında lisanslanmıştır.
+Bu proje eğitim amaçlı geliştirilmiştir dilediğiniz gibi kullanabilirsiniz.
 
 ## 🤝 Katkıda Bulunma
 
@@ -212,14 +212,12 @@ Katkılarınızı bekliyoruz! Lütfen şu adımları izleyin:
 
 Sorularınız, önerileriniz veya hata bildirimleri için:
 
-- GitHub Issues: [Proje Issues Sayfası](https://github.com/kullaniciadi/translator/issues)
-- Email: [E-posta adresiniz]
+- GitHub Issues: [Proje Issues Sayfası](https://github.com/lsaliherenl/Translator/issues)
+- Email: saliherencavusoglu23@gmail.com
 
 ## 🙏 Teşekkürler
 
 - [Tesseract OCR](https://github.com/tesseract-ocr/tesseract) - OCR motoru
-- [Azure Translator](https://azure.microsoft.com/services/cognitive-services/translator/) - Çeviri servisi
-- Tüm katkıda bulunanlara teşekkürler!
 
 ---
 
