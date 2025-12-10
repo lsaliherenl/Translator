@@ -28,7 +28,7 @@ namespace Translator
             lblMetin.Font = new Font("Segoe UI", 10, FontStyle.Regular);
             lblMetin.AutoSize = true;
             lblMetin.MaximumSize = new Size(400, 0); // Genişlik sınırı
-            lblMetin.Location = new Point(10, 10);
+            lblMetin.Location = new Point(this.Padding.Left, this.Padding.Top);
 
             // --- ARAPÇA VE LEHÇELER İÇİN YÖN AYARI ---
             // Unicode tablosunda Arapça karakterler 0x0600 ile 0x06FF arasındadır.
@@ -47,12 +47,25 @@ namespace Translator
 
             this.Controls.Add(lblMetin);
 
-            // Formu metne göre boyutlandır
-            this.AutoSize = true;
-            this.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            // Formu metne göre boyutlandır (padding dahil)
+            Size metinBoyutu = lblMetin.GetPreferredSize(new Size(400, 0));
+            int formGenislik = metinBoyutu.Width + this.Padding.Horizontal;
+            int formYukseklik = metinBoyutu.Height + this.Padding.Vertical;
+            this.ClientSize = new Size(formGenislik, formYukseklik);
 
-            // Konumlandırma (Seçilen alanın altına)
-            this.Location = new Point(x, y + h + 5);
+            // Çalışma alanı içinde kalacak şekilde konumlandır
+            Rectangle secimAlani = new Rectangle(x, y, 1, h);
+            Screen ekran = Screen.FromRectangle(secimAlani);
+            Rectangle calismaAlani = ekran.WorkingArea;
+
+            int hedefX = Clamp(x, calismaAlani.Left, calismaAlani.Right - this.Width);
+            int hedefYAlt = y + h + 5;
+            int hedefY = hedefYAlt + this.Height <= calismaAlani.Bottom
+                ? hedefYAlt
+                : y - this.Height - 5;
+
+            hedefY = Clamp(hedefY, calismaAlani.Top, calismaAlani.Bottom - this.Height);
+            this.Location = new Point(hedefX, hedefY);
 
             // --- KAPATMA OLAYLARI ---
 
@@ -77,6 +90,13 @@ namespace Translator
             base.OnShown(e);
             this.Activate();
             this.Focus();
+        }
+
+        private static int Clamp(int deger, int min, int max)
+        {
+            if (deger < min) return min;
+            if (deger > max) return max;
+            return deger;
         }
     }
 }
